@@ -50,8 +50,17 @@
     font-size: 1.2rem;
     padding: 0.5rem 1rem;
     border: none;background-color: grey;color: black;list-style-type: none;
-    display: grid;grid-template-columns: repeat(4,25%);
+    display: grid;grid-template-columns: repeat(5,20%);
     justify-content: space-around;align-items: center;
+}
+.list input{
+    width: 40%;
+    padding: 0.4rem 1rem;
+    background: none;border: none;
+}
+
+.list input:hover{
+    background-color: white; border: none; text-decoration: underline;
 }
 
 .removeBtn{
@@ -59,4 +68,11 @@
     justify-content: center;
     max-width: 4rem;padding: 0.4rem 0.6rem;border: none;
     background-color: rgb(240, 60, 60);color: white;
+    cursor: pointer;
+}
+.editBtn{
+    display: grid;
+    justify-content: center;
+    max-width: 4rem;padding: 0.4rem 0.6rem;border: none;
+    background-color: rgb(49, 231, 79);color: white;cursor: pointer;
 }

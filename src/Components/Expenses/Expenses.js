@@ -1,4 +1,4 @@
-import { useRef, useContext, useEffect , useState} from 'react'
+import { useRef, useContext, useEffect , useState, useCallback} from 'react'
 import classes from './Expenses.module.css'
 import AuthContext from '../Context/AuthContext'
 
@@ -11,7 +11,7 @@ const AddExpenses=()=>{
     const Price=useRef()
     const UserEmail=ctx.email && ctx.email.replace(/[@,.]/g,'')
 
-    const SubmitHandler=async (e)=>{
+    const SubmitHandler=useCallback(async (e)=>{
         e.preventDefault()
         console.log(UserEmail ,'Email')
         const expenseName = Name.current.value
@@ -39,13 +39,47 @@ const AddExpenses=()=>{
         Name.current.value=''
         Description.current.value=''
         Price.current.value=''
-    }
+    })
 
     const removeExpense=async (expense)=>{
         try{
-            const res=await fetch(`https://expensetracker-a6562-default-rtdb.firebaseio.com/Users/${UserEmail}/Expenses/${expense.id}.json` ,{
-            method:'DELETE'
+            await fetch(`https://expensetracker-a6562-default-rtdb.firebaseio.com/Users/${UserEmail}/Expenses/${expense.id}.json` ,{
+               method:'DELETE'
             })
+        }
+        catch(err){
+            alert(err)
+        }
+    }
+    
+    function delay(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    const editExpense=async (expense)=>{
+        Name.current.value=expense.ExpenseName
+        Description.current.value=expense.ExpenseDescription
+        Price.current.value=expense.ExpensePrice
+
+        await delay(6000)
+
+        try{
+            const updatedExpense={
+                ...expense,
+                ExpenseName : Name.current.value,
+                ExpenseDescription :Description.current.value,
+                ExpensePrice : Price.current.value 
+            }
+            console.log(updatedExpense)
+            const res=await fetch(`https://expensetracker-a6562-default-rtdb.firebaseio.com/Users/${UserEmail}/Expenses/${expense.id}.json` ,{
+               method:'PUT',
+               body:JSON.stringify(updatedExpense),
+               headers:{
+                'Content-Type':'application/json'
+               }
+            })
+            const data=await res.json()
+            console.log(data)
         }
         catch(err){
             alert(err)
@@ -75,7 +109,7 @@ const AddExpenses=()=>{
             }
         }
         ShowExpenses()
-    },[UserEmail,SubmitHandler,removeExpense])
+    },[UserEmail,SubmitHandler,removeExpense,editExpense])
 
 
     return(
@@ -87,8 +121,8 @@ const AddExpenses=()=>{
                 <option value="Petrol">Petrol</option>
                 <option value="Hotel">Hotel</option>
             </select>
-            <input type="number" placeholder='Price' ref={Description} className={classes.input}/>
-            <input type="text" placeholder='Expense Description' ref={Price} className={classes.input}/>
+            <input type="text" placeholder='Expense Description' ref={Description} className={classes.input}/>
+            <input type="number" placeholder='Price' ref={Price} className={classes.input}/>
             <button type="submit" className={classes.button}>Add Expenses</button>
          </form>
 
@@ -103,6 +137,7 @@ const AddExpenses=()=>{
                 <p>{expense.ExpenseDescription}</p>
                 <p>{expense.ExpensePrice}</p>
                 <button className={classes.removeBtn} onClick={()=>removeExpense(expense)}>Remove</button>
+                <button className={classes.editBtn} onClick={()=>editExpense(expense)}>Edit</button>
             </li>
           ))}
           </ul>
