@@ -1,0 +1,97 @@
+.container{
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 3%;
+    border: none;
+    background-color: skyblue;
+    margin-top: 6rem;
+    margin-bottom: 2rem;
+    border-radius: 1rem;
+}
+
+.h2{
+    display: flex;
+    justify-content: center;
+}
+
+.label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+  
+.input{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn a{
+    display: flex;
+    align-items: center;
+    justify-content: center;width: 100%;text-decoration: none;background: none;
+}
+.button {
+    max-width: 30%;
+    border-radius: 8px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+  
+.button:hover {
+    background-color: #45a049;
+}
+
+.button1 {
+    max-width: 50%;
+    border-radius: 8px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+  
+.button1:hover {
+    background-color: #45a049;
+}
+
+.btn2{
+    border: none;
+    background: none;
+    margin-top: 1rem;
+    color: black;
+    margin-top: 0;
+    margin-bottom: 0;
+    width: 100%;
+}
+.btn2 a:hover{
+    text-decoration: underline;
+    color: blue;
+    background: none;
+}
+
+.btn2 a{
+    color: black;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+  
+@media screen and (max-width: 600px) {
+    input{
+      width: 100%;
+    }
+}
+  
