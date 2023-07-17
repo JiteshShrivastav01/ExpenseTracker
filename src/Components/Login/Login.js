@@ -74,7 +74,7 @@ const Login=()=>{
             </div>
             <div className={classes.fbtn}>
               <button className={classes.forgotPass}> 
-                Forgot Password
+                <Link to='/resetPassword'>Forgot Password</Link>
               </button>
             </div>
             

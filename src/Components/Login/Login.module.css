@@ -8,6 +8,25 @@
     margin-bottom: 2rem;
     border-radius: 1rem;
 }
+.container2{
+    width: 300px;
+    margin: 5rem auto;
+    padding: 0.8rem 4rem;
+    border: none;
+    background-color: skyblue;
+    margin-top: 6rem;
+    margin-bottom: 2rem;
+    border-radius: 1rem;
+}
+.resetBtn{
+    width: 80px;
+    border-radius: 8px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+}
 
 .h2{
     display: flex;
@@ -46,6 +65,7 @@
     border: none;
     cursor: pointer;
     padding: 10px 20px;
+    margin-bottom: 0.5rem;
 }
   
 .button:hover {
