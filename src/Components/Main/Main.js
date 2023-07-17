@@ -1,6 +1,11 @@
+import Navbar from "../Header/Navbar"
+
+
 const Main=()=>{
     return(
-        <div>Welcome to Expense Tracker</div>
+        <>
+          <Navbar/>
+        </>
     )
 }
 

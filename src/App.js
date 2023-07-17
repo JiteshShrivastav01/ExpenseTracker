@@ -2,6 +2,7 @@ import Login from "./Components/Login/Login"
 import SignUP from "./Components/Login/Signup"
 import Main from './Components/Main/Main'
 import { Route } from "react-router-dom"
+import UpdateProfile from "./Components/UpdateProfile/UpdateProfile"
 
 
 
@@ -11,6 +12,7 @@ const App=()=>{
       <Route path='/' exact><Main/></Route>
       <Route path='/login'><Login/></Route>
       <Route path='/signup'><SignUP/></Route>
+      <Route path='/update'><UpdateProfile/></Route>
     </>
   )
 }

@@ -1,0 +1,53 @@
+*{
+    margin: 0;padding: 0;
+}
+
+.navbar{
+    top: 0;
+    width: 100%;
+    position: fixed;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    background-color: rgb(219, 245, 247);
+    color: black;
+    padding: 0.4rem;
+}
+
+.logo-name{
+    justify-content: center;display: grid;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;margin-left: 2rem;color: black;align-items: center;
+}
+.Brand{
+    font-size:1.4rem;font-weight:bold;align-items: center;
+}
+
+.btn{
+    display: grid;grid-template-columns:50% 50%;align-items: center;
+}
+.list{list-style-type: none;}
+.list a{
+    text-decoration: none;color: black;width:100%;text-align: center;
+    padding: 0.4rem;border-radius: 0.5rem;
+}
+.list a:hover{
+    font-size: 1rem;
+    background-color:black;color:white;
+}
+
+.userProfile{
+    display: flex;
+    border: none;border-radius: 3rem;
+    background-color: gold;
+    color: Black; align-items: center;justify-content: space-between;
+    width: fit-content; padding: 0.3rem 1rem;
+}
+.userBtn{
+    background: none;border: none; margin: 0.2rem;
+}
+.userBtn a{
+    color: blue;
+}
+.userIcon{
+    color: rgb(60, 72, 233);font-size: 1.5rem; margin: auto 0.2rem;
+}
+
+

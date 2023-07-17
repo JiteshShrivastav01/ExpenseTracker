@@ -1,12 +1,13 @@
-import { useRef } from 'react'
+import { useContext, useRef } from 'react'
 import classes from './Login.module.css'
 import {Link} from 'react-router-dom'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
-
-
+import AuthContext from '../Context/AuthContext'
+import Navbar from '../Header/Navbar'
 
 
 const SignUP=()=>{
+    const ctx=useContext(AuthContext)
     const history=useHistory()
     const Email=useRef()
     const Password=useRef()
@@ -44,6 +45,7 @@ const SignUP=()=>{
                 }
               })
               .then((data) => {
+                ctx.onLogin(data.idToken , data.email)
                 console.log('singup sucessfully.')
                 history.push('/')
               })
@@ -62,8 +64,10 @@ const SignUP=()=>{
     }
 
     return(
-        <div className={classes.container}>
-        <form onSubmit={SubmitHandler} className={classes.form}>
+        <>
+          <Navbar/>
+          <div className={classes.container}>
+          <form onSubmit={SubmitHandler} className={classes.form}>
             <h2 className={classes.h2}>Create Account</h2><br/>
             <label htmlFor="Email" className={classes.label}>Email </label>
             <input type="Email" ref={Email} className={classes.input} required/>
@@ -74,11 +78,12 @@ const SignUP=()=>{
             <div className={classes.btn}>
               <button type="submit" className={classes.button1}>Create Account</button>
             </div>
-        </form><hr />
-        <button className={classes.btn2}>
+          </form><hr />
+          <button className={classes.btn2}>
             <Link to='/login'>Login With Existing account </Link>
-        </button>
-       </div>
+          </button>
+          </div>
+        </>
     )
 }
 

@@ -1,0 +1,42 @@
+.container{
+   margin-top: 5rem;
+   color: black;
+}
+
+.form{
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 3%;
+    border: none;
+    background-color: rgb(231, 231, 231);
+    margin-bottom: 2rem;
+    border-radius: 1rem;
+}
+
+.label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+  
+.input{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.h2{
+    display: flex;
+    justify-content: center;
+}
+.btn{
+    max-width: 30%;
+    border-radius: 8px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+}

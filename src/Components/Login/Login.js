@@ -1,11 +1,15 @@
-import { useRef} from "react"
+import { useContext, useRef} from "react"
+import Navbar from '../Header/Navbar'
 import classes from './Login.module.css'
 import {Link} from 'react-router-dom'
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
+import AuthContext from "../Context/AuthContext"
+
 
 
 
 const Login=()=>{
+    const ctx=useContext(AuthContext)
     const Email=useRef()
     const Password=useRef()
     const history=useHistory()
@@ -39,6 +43,7 @@ const Login=()=>{
             }
           })
           .then((data) => {
+            ctx.onLogin(data.idToken,data.email)
             console.log('login Sucessfully')
             history.push('/')
           })
@@ -53,6 +58,8 @@ const Login=()=>{
 
 
     return (
+       <>
+       <Navbar/>
        <div className={classes.container}>
         <form onSubmit={SubmitHandler} className={classes.form}>
             <h2 className={classes.h2}>Login</h2><br/>
@@ -76,6 +83,7 @@ const Login=()=>{
             <Link to='/signup'>Create New Account</Link>
         </button>
        </div>
+       </>
     )
 }
 
