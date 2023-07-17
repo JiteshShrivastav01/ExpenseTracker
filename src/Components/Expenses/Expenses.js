@@ -41,6 +41,17 @@ const AddExpenses=()=>{
         Price.current.value=''
     }
 
+    const removeExpense=async (expense)=>{
+        try{
+            const res=await fetch(`https://expensetracker-a6562-default-rtdb.firebaseio.com/Users/${UserEmail}/Expenses/${expense.id}.json` ,{
+            method:'DELETE'
+            })
+        }
+        catch(err){
+            alert(err)
+        }
+    }
+
     useEffect(()=>{
         async function ShowExpenses(){
             try{
@@ -64,7 +75,7 @@ const AddExpenses=()=>{
             }
         }
         ShowExpenses()
-    },[UserEmail,SubmitHandler])
+    },[UserEmail,SubmitHandler,removeExpense])
 
 
     return(
@@ -87,7 +98,12 @@ const AddExpenses=()=>{
         <div className={classes.showExpenses}>
            <ul>
            {expenses.map(expense=>(
-            <li className={classes.list}>{expense.ExpenseName} --- {expense.ExpenseDescription} --- {expense.ExpensePrice}</li>
+            <li className={classes.list}>
+                <p>{expense.ExpenseName}</p>
+                <p>{expense.ExpenseDescription}</p>
+                <p>{expense.ExpensePrice}</p>
+                <button className={classes.removeBtn} onClick={()=>removeExpense(expense)}>Remove</button>
+            </li>
           ))}
           </ul>
         </div>

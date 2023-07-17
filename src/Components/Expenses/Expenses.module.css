@@ -45,8 +45,18 @@
 }
 
 .list{
-    max-width: 80%;
+    max-width: 60%;
     margin: 1rem auto;
+    font-size: 1.2rem;
     padding: 0.5rem 1rem;
     border: none;background-color: grey;color: black;list-style-type: none;
+    display: grid;grid-template-columns: repeat(4,25%);
+    justify-content: space-around;align-items: center;
+}
+
+.removeBtn{
+    display: grid;
+    justify-content: center;
+    max-width: 4rem;padding: 0.4rem 0.6rem;border: none;
+    background-color: rgb(240, 60, 60);color: white;
 }
