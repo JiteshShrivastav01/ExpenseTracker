@@ -1,0 +1,52 @@
+.container{
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 3%;
+    border: none;
+    background-color: skyblue;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    border-radius: 1rem;
+}
+
+.h2{
+    display: flex;
+    justify-content: center;
+}
+
+.label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+  
+.select, .input{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.button {
+    max-width: 30%;
+    border-radius: 8px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    margin-bottom: 0.5rem;
+}
+  
+.button:hover {
+    background-color: #45a049;
+}
+
+.list{
+    max-width: 80%;
+    margin: 1rem auto;
+    padding: 0.5rem 1rem;
+    border: none;background-color: grey;color: black;list-style-type: none;
+}
