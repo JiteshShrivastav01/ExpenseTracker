@@ -1,6 +1,6 @@
 const Main=()=>{
     return(
-        <div>Main here</div>
+        <div>Welcome to Expense Tracker</div>
     )
 }
 

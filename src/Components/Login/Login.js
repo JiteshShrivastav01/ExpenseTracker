@@ -63,8 +63,14 @@ const Login=()=>{
             <div className={classes.btn}>
               <button type="submit" className={classes.button}>
                 Login
+              </button><br />
+            </div>
+            <div className={classes.fbtn}>
+              <button className={classes.forgotPass}> 
+                Forgot Password
               </button>
             </div>
+            
         </form><hr />
         <button className={classes.btn2}>
             <Link to='/signup'>Create New Account</Link>

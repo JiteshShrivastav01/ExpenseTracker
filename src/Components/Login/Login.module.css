@@ -88,6 +88,21 @@
     font-weight: 600;
 }
 
+.fbtn{
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.forgotPass{
+    border:none;
+    background: none;
+}
+.forgotPass:hover{
+    text-decoration: underline;
+    color: blue;
+}
+
   
 @media screen and (max-width: 600px) {
     input{
