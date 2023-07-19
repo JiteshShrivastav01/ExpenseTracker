@@ -1,13 +1,15 @@
 import Navbar from "../Header/Navbar"
-import AuthContext from "../Context/AuthContext";
-import { useContext ,useState} from "react";
+import {useState} from "react";
 import classes from './Main.module.css'
 import Expenses from "../Expenses/Expenses";
-
+import { useSelector } from "react-redux";
 
 const Main=()=>{
-    const ctx=useContext(AuthContext)
+    const Token = useSelector(state => state.auth.token)
+    const TotalAmount = useSelector(state => state.auth.total)
     const [verify , setVerify]=useState(false)
+
+    const showSubBtn = TotalAmount>10000 ? true : false 
 
 
     const verifyEmail=async ()=>{
@@ -16,10 +18,11 @@ const Main=()=>{
             method:'POST',
             body:JSON.stringify({
               requestType : 'VERIFY_EMAIL',
-              idToken : ctx.token
+              idToken : Token
             })
           })
           const data=await res.json()
+          console.log(data)
           setVerify(true)
         }
         catch(err){
@@ -30,6 +33,7 @@ const Main=()=>{
     return(
       <>
         <Navbar/>
+        {showSubBtn && <button className={classes.subscriptionBtn}>Prime Subscription</button>}
         <div className={classes.container}>
           {!verify && <button onClick={verifyEmail} className={classes.verifyBtn}>Verify Email</button>}
         </div>

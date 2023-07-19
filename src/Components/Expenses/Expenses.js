@@ -1,15 +1,18 @@
-import { useRef, useContext, useEffect , useState, useCallback} from 'react'
+import { useRef, useEffect , useState, useCallback} from 'react'
 import classes from './Expenses.module.css'
-import AuthContext from '../Context/AuthContext'
+import {useDispatch, useSelector} from 'react-redux'
+import { AuthActions } from '../../store'
+
 
 
 const AddExpenses=()=>{
     const [expenses,setExpenses]=useState([])
-    const ctx=useContext(AuthContext)
+    const dispatch=useDispatch()
+    const authEmail = useSelector(state => state.auth.email)
     const Name=useRef()
     const Description = useRef()
     const Price=useRef()
-    const UserEmail=ctx.email && ctx.email.replace(/[@,.]/g,'')
+    const UserEmail=authEmail && authEmail.replace(/[@,.]/g,'')
 
     const SubmitHandler=useCallback(async (e)=>{
         e.preventDefault()
@@ -39,9 +42,9 @@ const AddExpenses=()=>{
         Name.current.value=''
         Description.current.value=''
         Price.current.value=''
-    })
+    },[])
 
-    const removeExpense=async (expense)=>{
+    const removeExpense=useCallback(async (expense)=>{
         try{
             await fetch(`https://expensetracker-a6562-default-rtdb.firebaseio.com/Users/${UserEmail}/Expenses/${expense.id}.json` ,{
                method:'DELETE'
@@ -50,13 +53,13 @@ const AddExpenses=()=>{
         catch(err){
             alert(err)
         }
-    }
+    },[])
     
     function delay(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
 
-    const editExpense=async (expense)=>{
+    const editExpense=useCallback(async (expense)=>{
         Name.current.value=expense.ExpenseName
         Description.current.value=expense.ExpenseDescription
         Price.current.value=expense.ExpensePrice
@@ -84,7 +87,7 @@ const AddExpenses=()=>{
         catch(err){
             alert(err)
         }
-    }
+    },[])
 
     useEffect(()=>{
         async function ShowExpenses(){
@@ -92,7 +95,7 @@ const AddExpenses=()=>{
                const res=await fetch(`https://expensetracker-a6562-default-rtdb.firebaseio.com/Users/${UserEmail}/Expenses.json`)
                const data=await res.json()
                console.log(data)
-
+               let totalAmount = 0
                const loader=[]
                for(let key in data){
                 loader.push({
@@ -101,8 +104,11 @@ const AddExpenses=()=>{
                     ExpenseDescription : data[key].ExpenseDescription ,
                     ExpensePrice : data[key].ExpensePrice
                 })
+                  totalAmount = parseInt(totalAmount) + parseInt(data[key].ExpensePrice)
                }
                setExpenses(loader)
+               dispatch(AuthActions.totalAmount(totalAmount))
+
             }
             catch(err){
                 alert(err)

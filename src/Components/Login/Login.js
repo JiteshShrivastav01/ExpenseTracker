@@ -1,18 +1,19 @@
-import { useContext, useRef} from "react"
+import {useRef} from "react"
 import Navbar from '../Header/Navbar'
 import classes from './Login.module.css'
 import {Link} from 'react-router-dom'
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
-import AuthContext from "../Context/AuthContext"
+import { AuthActions } from "../../store/Auth"
+import { useDispatch } from "react-redux"
 
 
 
 
 const Login=()=>{
-    const ctx=useContext(AuthContext)
     const Email=useRef()
     const Password=useRef()
     const history=useHistory()
+    const dispatch=useDispatch()
 
     const SubmitHandler=(e)=>{
         e.preventDefault()
@@ -43,7 +44,7 @@ const Login=()=>{
             }
           })
           .then((data) => {
-            ctx.onLogin(data.idToken,data.email)
+            dispatch(AuthActions.login({token : data.idToken, email : data.email}))
             console.log('login Sucessfully')
             history.push('/')
           })

@@ -25,7 +25,7 @@ const AuthContextProvider=(props)=>{
     }
 
     const value={
-    email : email ,
+       email : email ,
        token : Token ,
        isLoggedIn : isLoggedIn ,
        onLogin : LoginHandler,

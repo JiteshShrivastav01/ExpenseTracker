@@ -1,17 +1,17 @@
-import { useRef, useContext, useEffect ,useState} from "react"
+import { useRef, useEffect ,useState} from "react"
 import classes from './UpdateProfile.module.css'
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
-import AuthContext from "../Context/AuthContext"
 import Navbar from "../Header/Navbar"
+import { useSelector } from "react-redux"
 
 
 
 const UpdateProfile=()=>{
     const history=useHistory()
     const [userData,setUserData]=useState([])
-    const ctx=useContext(AuthContext)
     const Name=useRef()
     const Photo=useRef()
+    const Token = useSelector(state => state.auth.token)
 
 
     useEffect(()=>{
@@ -20,7 +20,7 @@ const UpdateProfile=()=>{
           const res=await fetch('https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyB2B4txBmWbj7nOJi7zyym2kuveqd3iews',{
             method:'POST',
             body:JSON.stringify({
-                idToken : ctx.token,
+                idToken : Token,
             }),
             headers:{
                 'Content-Type': 'application/json' 
@@ -44,7 +44,7 @@ const UpdateProfile=()=>{
         const res=fetch('https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyB2B4txBmWbj7nOJi7zyym2kuveqd3iews',{
             method:'POST',
             body:JSON.stringify({
-                idToken : ctx.token,
+                idToken : Token,
                 displayName : name ,
                 photoUrl : photo,
                 returnSecureToken : false

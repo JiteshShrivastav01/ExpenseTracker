@@ -1,14 +1,14 @@
 import classes from './Navbar.module.css'
 import { NavLink, Link} from 'react-router-dom'
-import AuthContext from '../Context/AuthContext';
-import { useContext } from 'react';
+import { AuthActions } from '../../store/Auth'
 import {FaUserCircle } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
 
 
 
 
 const Navbar = (props) => {
-    const ctx=useContext(AuthContext)
+    const isLoggedIn = useSelector(state => state.auth.isLoggedIn)
 
   
     return (
@@ -18,14 +18,14 @@ const Navbar = (props) => {
         </div>
         <div className={classes.btn}>
           <div>
-            {!ctx.isLoggedIn && <li className={classes.list}>
+            {!isLoggedIn && <li className={classes.list}>
               <NavLink to="/login" className={classes.loginBtn}>Login</NavLink>
             </li>}
-            {ctx.isLoggedIn && <li className={classes.list}>
-              <NavLink to="/login"  className={classes.loginBtn} onClick={ctx.onLogout} exact>Logout</NavLink>
+            {isLoggedIn && <li className={classes.list}>
+              <NavLink to="/login"  className={classes.loginBtn} onClick={AuthActions.logout} exact>Logout</NavLink>
             </li>}
           </div>
-          {ctx.isLoggedIn &&
+          {isLoggedIn &&
             <div className={classes.userProfile}>
               <FaUserCircle className={classes.userIcon} onClick={props.showProfile}/>
               <p>Your profile is incomplete. </p>
