@@ -1,15 +1,25 @@
+.body{width: 100%;min-height: 100vh;margin: 0;max-height: 200vh;}
+
 .container{
     margin-top: 5rem;
     margin-bottom: 0;
 }
 
-.verifyBtn{
-    margin-left: 3rem;border-radius: 0.5rem;
-    padding: 0.3rem 0.6rem;
+.btn{display: flex}
+.subscriptionBtn{margin-left: 2rem;
+    margin-top: 5rem;max-width: 10rem;padding: 0.5rem; border-radius: 0.4rem ;border: none;background-color: red;color: white;cursor: pointer;
 }
 
-.subscriptionBtn{
-    margin: 6rem 2rem;
+.themeBtn{margin-top: 5rem; margin-left: 2rem;
     max-width: 10rem;padding: 0.5rem; border-radius: 0.4rem ;border: none;
-    background-color: red;color: white;
+    background-color: rgb(233, 23, 128);color: white; cursor: pointer;
+}
+.verifyBtn{
+    margin-top: 5rem; margin-left: 2rem;
+    max-width: 10rem;padding: 0.5rem; border-radius: 0.4rem ;border: none;
+    background-color: rgb(85, 38, 214);color: white; cursor: pointer;
+}
+
+.expenselist{
+    height: 100%;margin: 0;
 }

@@ -2,6 +2,7 @@ import { useRef, useEffect , useState, useCallback} from 'react'
 import classes from './Expenses.module.css'
 import {useDispatch, useSelector} from 'react-redux'
 import { AuthActions } from '../../store'
+import { CSVLink } from 'react-csv'
 
 
 
@@ -13,6 +14,18 @@ const AddExpenses=()=>{
     const Description = useRef()
     const Price=useRef()
     const UserEmail=authEmail && authEmail.replace(/[@,.]/g,'')
+
+    const headers=[
+        {label : 'Expense Name' , key :'ExpenseName'},
+        {label : 'Expense Description' , key :'ExpenseDescription'},
+        {label : 'Expense Price' , key :'ExpensePrice'}
+    ]
+
+    const csvLink = {
+        filename : 'Expenses.csv',
+        headers : headers ,
+        data : expenses
+    }
 
     const SubmitHandler=useCallback(async (e)=>{
         e.preventDefault()
@@ -117,9 +130,13 @@ const AddExpenses=()=>{
         ShowExpenses()
     },[UserEmail,SubmitHandler,removeExpense,editExpense])
 
+    const DownloadExpenses=()=>{
+         
+    }
+
 
     return(
-      <div>
+      <div className={classes.expenses}> 
         <div className={classes.container}>
          <form className={classes.form} onSubmit={SubmitHandler}>
             <select name="Expenses" className={classes.select} placeholder='Select Expense' ref={Name}>
@@ -136,6 +153,11 @@ const AddExpenses=()=>{
         </div>
         <hr />
         <div className={classes.showExpenses}>
+            <CSVLink {...csvLink}>
+                <button onClick={DownloadExpenses} className={classes.downloadBtn}>
+                   Download Expenses
+                </button>
+            </CSVLink>
            <ul>
            {expenses.map(expense=>(
             <li className={classes.list}>
