@@ -48,6 +48,16 @@ const AddExpenses=()=>{
            })
            const data = await res.json()
            console.log(data)
+
+           setExpenses(prevExpenses => [
+            ...prevExpenses,
+            {
+              id: data.name, 
+              ExpenseName: expenseName,
+              ExpenseDescription: expenseDescription,
+              ExpensePrice: expensePrice,
+            },
+          ]);
         }
         catch(err){
             alert(err)
@@ -55,18 +65,22 @@ const AddExpenses=()=>{
         Name.current.value=''
         Description.current.value=''
         Price.current.value=''
-    },[])
+    },[UserEmail])
 
     const removeExpense=useCallback(async (expense)=>{
         try{
             await fetch(`https://expensetracker-a6562-default-rtdb.firebaseio.com/Users/${UserEmail}/Expenses/${expense.id}.json` ,{
                method:'DELETE'
             })
+
+            setExpenses(prevExpenses =>
+                prevExpenses.filter(item => item.id !== expense.id)
+              );
         }
         catch(err){
             alert(err)
         }
-    },[])
+    },[UserEmail])
     
     function delay(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -96,11 +110,20 @@ const AddExpenses=()=>{
             })
             const data=await res.json()
             console.log(data)
+
+            setExpenses(prevExpenses =>
+                prevExpenses.map(item =>
+                  item.id === expense.id ? { ...item, ...updatedExpense } : item
+                )
+              );
         }
         catch(err){
             alert(err)
         }
-    },[])
+        Name.current.value=''
+        Description.current.value=''
+        Price.current.value=''
+    },[UserEmail])
 
     useEffect(()=>{
         async function ShowExpenses(){
@@ -128,11 +151,8 @@ const AddExpenses=()=>{
             }
         }
         ShowExpenses()
-    },[UserEmail,SubmitHandler,removeExpense,editExpense])
+    },[UserEmail,SubmitHandler,removeExpense,editExpense,dispatch,expenses])
 
-    const DownloadExpenses=()=>{
-         
-    }
 
 
     return(
@@ -154,7 +174,7 @@ const AddExpenses=()=>{
         <hr />
         <div className={classes.showExpenses}>
             <CSVLink {...csvLink}>
-                <button onClick={DownloadExpenses} className={classes.downloadBtn}>
+                <button  className={classes.downloadBtn}>
                    Download Expenses
                 </button>
             </CSVLink>

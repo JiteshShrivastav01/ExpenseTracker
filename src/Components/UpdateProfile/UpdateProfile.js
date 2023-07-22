@@ -34,7 +34,7 @@ const UpdateProfile=()=>{
         }
       }
       showData()
-    },[])
+    },[Token])
 
     const SubmitHandler=(e)=>{
         e.preventDefault()
@@ -71,7 +71,7 @@ const UpdateProfile=()=>{
           .catch((error) => {
             alert(error.message);
           });
-        
+        console.log(res)
         Name.current.value=''
         Photo.current.value=''
     }

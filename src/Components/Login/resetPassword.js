@@ -25,6 +25,7 @@ const ResetPass=()=>{
                 'Content-Type' : 'application/json'
               }
            })
+           console.log(res)
            setIsReset(true)
            await delay(4000)
            setIsReset(false)

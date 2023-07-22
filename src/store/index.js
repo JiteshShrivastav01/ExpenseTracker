@@ -6,13 +6,13 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialToken=localStorage.getItem('token')
 const initialEmail=localStorage.getItem('email')
-const isLoggedIn = !!initialToken 
+// const isLoggedIn = !!initialToken 
 
 
 const initialAuthState = {
     token : initialToken ,
     email : initialEmail ,
-    isLoggedIn : isLoggedIn,
+    isLoggedIn : false,
     total : 0,
 }
 
@@ -40,7 +40,6 @@ const Auth = createSlice({
         },
         totalAmount(state,action){
             state.total = action.payload
-            console.log(state.total)
         }
     }
 })

@@ -1,6 +1,6 @@
 import classes from './Navbar.module.css'
 import { NavLink, Link} from 'react-router-dom'
-import { AuthActions } from '../../store/Auth'
+import { AuthActions } from '../../store'
 import {FaUserCircle } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 
@@ -8,7 +8,8 @@ import { useSelector } from 'react-redux';
 
 
 const Navbar = (props) => {
-    const isLoggedIn = useSelector(state => state.auth.isLoggedIn)
+    // const isLoggedIn = useSelector(state => state.auth.isLoggedIn)
+    const isLoggedIn = useSelector(state =>state.auth.isLoggedIn)
 
   
     return (
